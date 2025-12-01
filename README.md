@@ -5,6 +5,7 @@ A beautiful, offline task calendar built with Svelte. Manage your tasks across m
 Try it out - [forge-calendar](https://psyklopp.github.io/forge-calendar/)
 
 ✅ Safe for users - Data never leaves their device
+
 ✅ Private by design - No server storage
 
 ## Features
@@ -14,37 +15,12 @@ Try it out - [forge-calendar](https://psyklopp.github.io/forge-calendar/)
 - **Week View** - Focus on your current week with detailed task cards
 - **Day View** - Dive deep into a single day's tasks
 
-### ✨ Task Management
-- Create tasks with titles and descriptions
-- Color-code tasks (8 colors available)
-- Mark tasks as complete
-- Edit and delete tasks
-- Click any task to edit it
-
-### 🔁 Recurring Tasks
-- Daily, weekly, or monthly repetition
-- Optional end dates
-- Edit parent task to update all instances
-
 ### ⌨️ Keyboard Shortcuts
 - `Shift + Q` - Switch to Month view
 - `Shift + W` - Switch to Week view
 - `Shift + E` - Switch to Day view
 - `Shift + A` - Add new task
-- `Esc` - Close modal
-
-### 💾 Data Management
-- Export tasks to JSON file
-- Import tasks from JSON file
-- Clear all tasks
-- All data stored locally (offline, private)
-
-### 🎨 Beautiful UI
-- Smooth animations and transitions
-- Responsive design
-- Color-coded tasks
-- Visual feedback for all actions
-- Empty states with helpful hints
+- `Esc` - Close task form
 
 ## Development
 
@@ -96,36 +72,9 @@ This creates a `dist/` folder with static files.
    - **Mac/Linux:** Double-click `START_SERVER.sh`
    - Browser opens automatically with the app!
 
-### Why Not Just Open index.html?
-
-Modern browsers block ES modules from `file://` for security. The app needs to run through a web server (even locally). The included server scripts make this super easy - just one double-click!
-
 ### Requirements for Users
 - Python 3 (pre-installed on Mac/Linux, Windows users may need to install from python.org)
 - Any modern web browser
-
-## Usage Tips
-
-### Creating Tasks
-- Click any date to create a task
-- Use `Shift + A` for quick task creation
-- Fill in details, choose a color, and optionally make it recurring
-
-### Recurring Tasks
-- Check "Recurring task" when creating
-- Select frequency (daily/weekly/monthly)
-- Optionally set an end date
-- Edit any instance to update the entire series
-
-### Navigation
-- Use arrow buttons (← →) to navigate between periods
-- "Today" button jumps to current date
-- Click view buttons or use keyboard shortcuts to switch views
-
-### Data Backup
-- Regularly export your tasks via the menu (⋮)
-- Store the JSON file safely
-- Import on a new device or after clearing data
 
 ## Project Structure
 
@@ -156,15 +105,6 @@ forge-calendar-app/
 - **Framework:** Svelte 4
 - **Styling:** Tailwind CSS 3
 - **Build Tool:** Vite
-- **Storage:** Browser localStorage
-- **Bundle Size:** ~61KB JS, ~16KB CSS (gzipped)
-
-## Browser Support
-
-Works in all modern browsers that support:
-- ES6+ JavaScript
-- localStorage API
-- CSS Grid and Flexbox
 
 ## Privacy
 
