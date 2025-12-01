@@ -2,6 +2,11 @@
 
 A beautiful, offline task calendar built with Svelte. Manage your tasks across month, week, and day views with powerful features like recurring tasks, color coding, and keyboard shortcuts.
 
+Try it out - [forge-calendar](https://psyklopp.github.io/forge-calendar/)
+
+✅ Safe for users - Data never leaves their device
+✅ Private by design - No server storage
+
 ## Features
 
 ### 📅 Multiple Views
@@ -64,7 +69,7 @@ npm run build
 
 This creates a `dist/` folder with static files.
 
-## Sharing with Others
+## Sharing with Others - run local
 
 ### Building for Distribution
 
@@ -80,7 +85,6 @@ This creates a `dist/` folder with static files.
    - `START_SERVER.py` - Python server script
    - `START_SERVER.bat` - Windows launcher
    - `START_SERVER.sh` - Mac/Linux launcher
-   - `README.txt` - Instructions for users
 
 3. **Share with others:**
    - Zip the entire `dist/` folder
@@ -99,7 +103,6 @@ Modern browsers block ES modules from `file://` for security. The app needs to r
 ### Requirements for Users
 - Python 3 (pre-installed on Mac/Linux, Windows users may need to install from python.org)
 - Any modern web browser
-- That's it!
 
 ## Usage Tips
 
