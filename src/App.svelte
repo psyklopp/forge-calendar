@@ -6,9 +6,10 @@
   import WeekView from './components/WeekView.svelte';
   import DayView from './components/DayView.svelte';
   import BrainView from './components/BrainView.svelte';
+  import MoneyView from './components/MoneyView.svelte';
   import TaskForm from './components/TaskForm.svelte';
   
-  let currentView = 'month'; // month, week, day, brain
+  let currentView = 'month'; // month, week, day, brain, money
   let selectedDate = null; // For day view
   let isFormOpen = false;
   let showMenu = false;
@@ -114,6 +115,13 @@
       event.preventDefault();
       openAddTaskForm();
     }
+
+    // SHIFT + M = Money view
+    else if (event.shiftKey && event.key === 'M') {
+      event.preventDefault();
+      currentView = 'money';
+    }
+
     // SHIFT + N = Quick note (triggers quick note in current view)
     else if (event.shiftKey && event.key === 'N') {
       event.preventDefault();
@@ -224,6 +232,14 @@
             >
               🧠 Brain
             </button>
+
+            <button 
+              class="px-4 py-2 rounded-lg transition-colors {currentView === 'money' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
+              on:click={() => currentView = 'money'}
+              title="Money Tracker (Shift+M)"
+            >
+              💰 Money
+            </button>
           </div>
           
           <!-- Quick Notes Filter Button -->
@@ -289,7 +305,7 @@
             </div>
           {/if}
           
-          <!-- Dark Mode Toggle -->
+          <!-- Dark Mode Toggle
           <button
             on:click={toggleDarkMode}
             class="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
@@ -297,6 +313,7 @@
           >
             {darkMode ? '☀️' : '🌙'}
           </button>
+          -->
           
           <!-- Menu Button -->
           <div class="relative">
@@ -354,7 +371,7 @@
       
       <!-- Keyboard shortcuts hint -->
       <div class="mt-2 text-xs text-gray-500 dark:text-gray-400 hidden lg:block">
-        Shortcuts: Shift+Q (Month) • Shift+W (Week) • Shift+E (Day) • Shift+A (Add Task) • Shift+B (Brain) • Shift+N (Quick Note)
+        Shortcuts: SHIFT + Q (Month) • W (Week) • E (Day) • A (Add Task) • B (Brain) • M (Money) • N (Quick Note)
       </div>
     </div>
   </header>
@@ -369,6 +386,8 @@
       <DayView bind:selectedDate={selectedDate} />
     {:else if currentView === 'brain'}
       <BrainView />
+    {:else if currentView === 'money'}
+      <MoneyView />
     {/if}
   </main>
 </div>

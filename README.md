@@ -4,9 +4,7 @@ A beautiful, offline task calendar built with Svelte. Manage your tasks across m
 
 Try it out - [forge-calendar](https://psyklopp.github.io/forge-calendar/)
 
-✅ Safe for users - Data never leaves their device
-
-✅ Private by design - No server storage
+✅ Private - Data never leaves the device
 
 ## Features
 
@@ -20,6 +18,9 @@ Try it out - [forge-calendar](https://psyklopp.github.io/forge-calendar/)
 - `Shift + W` - Switch to Week view
 - `Shift + E` - Switch to Day view
 - `Shift + A` - Add new task
+- `Shift + B` - Switch to Brain view
+- `Shift + N` - Quick note
+- `Shift + M` - Switch to Money view
 - `Esc` - Close task form
 
 ## Development
@@ -45,9 +46,9 @@ npm run build
 
 This creates a `dist/` folder with static files.
 
-## Sharing with Others - run local
+##  Running locally or sharing with others
 
-### Building for Distribution
+### Building
 
 1. **Build the project:**
    ```bash
@@ -66,7 +67,7 @@ This creates a `dist/` folder with static files.
    - Zip the entire `dist/` folder
    - Send via email, USB, cloud storage, etc.
 
-4. **For recipients:**
+4. **Users:**
    - Unzip the folder
    - **Windows:** Double-click `START_SERVER.bat`
    - **Mac/Linux:** Double-click `START_SERVER.sh`
@@ -75,30 +76,6 @@ This creates a `dist/` folder with static files.
 ### Requirements for Users
 - Python 3 (pre-installed on Mac/Linux, Windows users may need to install from python.org)
 - Any modern web browser
-
-## Project Structure
-
-```
-forge-calendar-app/
-├── src/
-│   ├── components/
-│   │   ├── MonthView.svelte   # Month calendar grid
-│   │   ├── WeekView.svelte    # Week columns
-│   │   ├── DayView.svelte     # Single day detail
-│   │   └── TaskForm.svelte    # Task creation/editing modal
-│   ├── lib/
-│   │   ├── taskStore.js       # State management
-│   │   ├── taskHelpers.js     # Task utilities
-│   │   ├── storage.js         # localStorage wrapper
-│   │   ├── dateUtils.js       # Date calculations
-│   │   └── weekUtils.js       # Week-specific utilities
-│   ├── App.svelte             # Main app component
-│   ├── app.css                # Tailwind styles
-│   └── main.js                # Entry point
-├── dist/                      # Built files (after npm run build)
-├── package.json
-└── README.md
-```
 
 ## Technical Details
 
