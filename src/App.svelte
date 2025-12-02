@@ -5,9 +5,10 @@
   import MonthView from './components/MonthView.svelte';
   import WeekView from './components/WeekView.svelte';
   import DayView from './components/DayView.svelte';
+  import BrainView from './components/BrainView.svelte';
   import TaskForm from './components/TaskForm.svelte';
   
-  let currentView = 'month'; // month, week, or day
+  let currentView = 'month'; // month, week, day, brain
   let selectedDate = null; // For day view
   let isFormOpen = false;
   let showMenu = false;
@@ -101,6 +102,13 @@
       }
       currentView = 'day';
     }
+
+    // SHIFT + B = Brain view
+    else if (event.shiftKey && event.key === 'B') {
+      event.preventDefault();
+      currentView = 'brain';
+    }
+
     // SHIFT + A = Add task
     else if (event.shiftKey && event.key === 'A') {
       event.preventDefault();
@@ -207,6 +215,14 @@
               title="Day View (Shift+E)"
             >
               Day
+            </button>
+
+            <button 
+              class="px-4 py-2 rounded-lg transition-colors {currentView === 'brain' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
+              on:click={() => currentView = 'brain'}
+              title="Brain Health (Shift+B)"
+            >
+              🧠 Brain
             </button>
           </div>
           
@@ -338,7 +354,7 @@
       
       <!-- Keyboard shortcuts hint -->
       <div class="mt-2 text-xs text-gray-500 dark:text-gray-400 hidden lg:block">
-        Shortcuts: Shift+Q (Month) • Shift+W (Week) • Shift+E (Day) • Shift+A (Add Task) • Shift+N (Quick Note)
+        Shortcuts: Shift+Q (Month) • Shift+W (Week) • Shift+E (Day) • Shift+A (Add Task) • Shift+B (Brain) • Shift+N (Quick Note)
       </div>
     </div>
   </header>
@@ -351,6 +367,8 @@
       <WeekView onDayClick={handleDayClick} />
     {:else if currentView === 'day'}
       <DayView bind:selectedDate={selectedDate} />
+    {:else if currentView === 'brain'}
+      <BrainView />
     {/if}
   </main>
 </div>

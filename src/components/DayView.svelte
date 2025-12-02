@@ -176,6 +176,10 @@
     }, 5000);
   }
   
+  function handleFocusQuit() {
+    showFocusTimer = false;
+  }
+
   function deleteTask(task) {
     // Check if this is a recurring instance
     if (task.parentTaskId) {
@@ -447,6 +451,7 @@
     task={focusTask}
     duration={focusDuration}
     onComplete={handleFocusComplete}
+    onQuit={handleFocusQuit}
   />
 {/if}
 

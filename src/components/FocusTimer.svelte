@@ -1,11 +1,13 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
   import { tasks } from '../lib/taskStore.js';
-  
+  import { recordCompletion } from '../lib/focusStats.js';
+
   export let task = null;
   export let duration = 45; // Duration in minutes
   export let onComplete = null;
-  
+  export let onQuit = null;
+
   let timeRemaining = duration * 60; // Convert to seconds
   let interval = null;
   let progress = 0;
@@ -30,6 +32,9 @@
   
   function finishSession() {
     clearInterval(interval);
+
+    // Record completion in stats
+    recordCompletion(duration);
     
     // Add time to task
     if (task) {
@@ -44,6 +49,15 @@
       onComplete(duration);
     }
   }
+
+  function quitSession() {
+    clearInterval(interval);
+    
+    // Call quit callback (doesn't record completion)
+    if (onQuit) {
+      onQuit();
+    }
+  }
   
   function formatTime(seconds) {
     const mins = Math.floor(seconds / 60);
@@ -54,6 +68,16 @@
 
 <!-- Full Screen Focus Overlay -->
 <div class="fixed inset-0 z-50 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex flex-col items-center justify-center">
+  <!-- Quit Button -->
+  <button
+    on:click={quitSession}
+    class="absolute top-6 right-6 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg backdrop-blur-sm transition-colors flex items-center gap-2 text-sm"
+    title="Quit focus session"
+  >
+    <span class="text-lg">✕</span>
+    <span>Quit</span>
+  </button>
+  
   <!-- Pixel Art Decoration -->
   <div class="absolute top-10 left-10 w-16 h-16 bg-yellow-400 opacity-20" style="clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"></div>
   <div class="absolute top-20 right-20 w-12 h-12 bg-pink-400 opacity-20 rounded-full"></div>
