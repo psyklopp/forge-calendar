@@ -1,5 +1,5 @@
 <script>
-  import { getTodayString } from '../lib/dateUtils.js';
+  import { isToday, getTodayString } from '../lib/dateUtils.js';
   import { 
     getRecordForDate, 
     updateRecord, 
@@ -8,12 +8,16 @@
     getCurrentStreak
   } from '../lib/brainHealth.js';
   
-  let selectedDate = getTodayString();
+  let selectedDate = $state(getTodayString());
   let record = $state(getRecordForDate(selectedDate));
   let dailyScore = $derived(calculateDailyScore(record));
   let weekData = $state(getWeekData(selectedDate));
   let streak = $state(getCurrentStreak());
   
+  $effect(() => {
+    record = getRecordForDate(selectedDate);
+  });
+
   function toggle(path) {
     const keys = path.split('.');
     if (keys.length === 1) {
@@ -88,6 +92,9 @@
     <div class="flex items-center justify-between">
       <div class="text-gray-600">
         {new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+        {#if isToday(selectedDate)}
+          <span class="text-blue-600 ml-2">• Today</span>
+        {/if}
       </div>
       <div class="text-2xl font-bold" class:text-green-600={dailyScore >= 80} class:text-yellow-600={dailyScore >= 50 && dailyScore < 80} class:text-gray-400={dailyScore < 50}>
         {dailyScore}%
